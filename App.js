@@ -13,6 +13,7 @@ import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
 
 
+
 export default class App extends Component {
   state = {
     places: []
@@ -22,7 +23,12 @@ export default class App extends Component {
   placeAddedHandler = (placeName) => {
     this.setState((prevState) => {
       return {
-        places: prevState.places.concat({ key: Math.floor(Math.random() * 100), value: placeName})
+        places: prevState.places.concat({ key: Math.floor(Math.random() * 100), 
+                                          value: placeName,
+                                          image: {
+                                            uri: "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg"
+                                          } 
+                                        })
       };
     });
   };
