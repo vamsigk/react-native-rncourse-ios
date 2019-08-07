@@ -36,7 +36,7 @@ class PlaceInput extends Component {
 
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
