@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, View, StyleSheet, Button, Text, Image } from 'react-native';
+import { Modal, View, StyleSheet, Button, Text, Image, TouchableOpacity } from 'react-native';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const placeDetail = (props) => {
 
@@ -21,12 +23,12 @@ const placeDetail = (props) => {
                 {modalContent}
             </View>
             <View style={styles.buttonContainer}>
-                <View style={styles.deleteButton}>
-                    <Button title="Delete" onPress={props.onItemDeleted} />
-                </View>
-                <View style={styles.modalCloseButton}>
-                    <Button title="Close" onPress={props.onModalClose} />
-                </View>
+                <TouchableOpacity onPress={props.onItemDeleted} style={styles.deleteButton}>
+                    <Icon size={30} name="ios-trash" color="red"/>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={props.onModalClose} style={styles.modalCloseButton}>
+                    <Icon size={30} name="ios-close-circle-outline"/>
+                </TouchableOpacity>
             </View>
         </Modal>
     );
@@ -37,13 +39,15 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: "100%",
         flexDirection: "row",
-        alignItems: "center"
+        marginTop: 30
     },
     deleteButton: {
-        width: "50%"
+        width: "50%",
+        alignItems: "center"
     },
     modalCloseButton: {
-        width: "50%"
+        width: "50%",
+        alignItems: "center"
     },
     placeDetailImage: {
         width: "100%",
