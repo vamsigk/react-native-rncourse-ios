@@ -1,1 +1,1 @@
-export { addPlace, deletePlace, selectPlace, deselectPlace } from './places-action-creator';
+export { addPlace, deletePlace } from './places-action-creator';
