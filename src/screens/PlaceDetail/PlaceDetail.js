@@ -1,22 +1,33 @@
-import React  from 'react';
+import React, {Component}  from 'react';
 import { View, StyleSheet, Button, Text, Image, TouchableOpacity } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import {connect} from "react-redux";
 
-const placeDetail = (props) => {
-    return (
-        <View style={styles.placeDetailContainer}>
-            <View>
-                <Image source={props.selectedPlace.image} style={styles.placeDetailImage} />
-                <Text style={styles.palceNameView}>{props.selectedPlace.value} is an Awesome Place</Text>
+import Icon from 'react-native-vector-icons/Ionicons';
+import { deletePlace } from "../../store/actions/index";
+
+class PlaceDetail extends Component  {
+
+    placeDeleteHandler = () => {
+        this.props.onDeletePlace(this.props.selectedPlace.key);
+        this.props.navigator.pop();
+    }
+
+    render() {
+        return (
+            <View style={styles.placeDetailContainer}>
+                <View>
+                    <Image source={this.props.selectedPlace.image} style={styles.placeDetailImage} />
+                    <Text style={styles.palceNameView}>{this.props.selectedPlace.value} is an Awesome Place</Text>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity onPress={this.placeDeleteHandler}>
+                        <Icon size={30} name="ios-trash" color="red"/>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={props.onItemDeleted}>
-                    <Icon size={30} name="ios-trash" color="red"/>
-                </TouchableOpacity>
-            </View>
-        </View>
-    );
+        );
+    }
 };
 
 
@@ -41,4 +52,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default placeDetail;
+const mapDispatchToProps = dispatch => {
+    return {
+        onDeletePlace: (key) => dispatch(deletePlace(key))
+    };
+};
+
+export default connect(null, mapDispatchToProps)(PlaceDetail);
