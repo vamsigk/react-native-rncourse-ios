@@ -1,5 +1,8 @@
-import React, {Component} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import {View, Text, Button, StyleSheet, TextInput } from 'react-native';
+
+import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
+
 import startTabs from "../MainTabs/startMainTabs";
 
 class AuthScreen extends Component {
@@ -11,9 +14,15 @@ class AuthScreen extends Component {
 
     render() {
         return (
-            <View style={styles.loginView}>
-                <Text>Auth Screen</Text>
-                <Button title="Login" onPress={this.loginHandler}/>
+            <View style={styles.loginContainer}>
+                <View style={styles.inputContainer}>
+                    <DefaultInput placeholder="Email Address" style={styles.input}/>
+                    <DefaultInput placeholder="Password" style={styles.input}/>
+                    <DefaultInput placeholder="Confirm Password" style={styles.input}/>
+                </View>
+                <Button title="Sign Up" onPress={this.loginHandler}/>
+                <Text>Please switch to login, if you already have an account.</Text>
+                <Button title ="Switch to login"/>
             </View>
         );
     }
@@ -21,9 +30,16 @@ class AuthScreen extends Component {
 
 
 const styles = StyleSheet.create({
-    loginView: {
-        alignItems: "center",
-        paddingTop: 30
+    loginContainer: {
+       flex: 1,
+       justifyContent: "center",
+       alignItems: "center"
+    },
+    inputContainer: {
+        width: "80%"
+    },
+    input: {
+        backgroundColor: "#eee"
     }
 });
 
